@@ -183,7 +183,7 @@ describe("suppressTsErrors", () => {
             return <span>Bar</span>;
           }
         }
-        class Baz extends React.Component<{msg: number}> {
+        class Baz extends React.Component<{msg: number, a: string, b: string, c: string}> {
           render() {
             return <span>Baz</span>;
           }
@@ -194,7 +194,12 @@ describe("suppressTsErrors", () => {
             <div>
               <Foo
                 bar={
-                  <Baz msg="Hello">
+                  <Baz 
+                    a="a"
+                    b="b"
+                    c="c"
+                    msg="Hello"
+                  >
                     World
                   </Baz>
                 }
@@ -213,7 +218,7 @@ describe("suppressTsErrors", () => {
             return <span>Bar</span>;
           }
         }
-        class Baz extends React.Component<{msg: number}> {
+        class Baz extends React.Component<{msg: number, a: string, b: string, c: string}> {
           render() {
             return <span>Baz</span>;
           }
@@ -224,8 +229,13 @@ describe("suppressTsErrors", () => {
             <div>
               <Foo
                 bar={
-                  // @ts-expect-error TS2769
-                  <Baz msg="Hello">
+                  <Baz 
+                    a="a"
+                    b="b"
+                    c="c"
+                    // @ts-expect-error TS2769
+                    msg="Hello"
+                  >
                     World
                   </Baz>
                 }

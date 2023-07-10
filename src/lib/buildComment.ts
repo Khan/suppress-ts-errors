@@ -25,6 +25,16 @@ function isSomKindOfJsxAtLine(
       ts.SyntaxKind.OpenParenToken ||
     // This can happen when the error is on the opening JSX tag inside
     // a JSX expression when a block of JSX is being passed as a prop.
+    // e.g.
+    // <MyComp
+    //     foo={
+    //       <Foo
+    //           bar={bar}
+    //           // ts-expect-error TS2769
+    //           baz={qux}
+    //       />
+    //   }
+    // />
     targetNode?.getPreviousSibling()?.getKind() ===
       ts.SyntaxKind.OpenBraceToken;
 
